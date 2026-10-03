@@ -87,7 +87,7 @@ h3{margin:0;font-family:var(--font-display)}
 .actions{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:1.25rem}
 
 /* Sampul */
-.hero{background:var(--deep);color:var(--deep-fg);text-align:center;padding-block:clamp(3rem,9vw,5.5rem)}
+.hero{background:var(--deep);color:var(--deep-fg);text-align:center;padding-block:clamp(4.5rem,10vw,5.5rem)}
 .hero-in{max-width:34rem;margin-inline:auto;padding-inline:1rem;display:flex;flex-direction:column;align-items:center;gap:1.1rem}
 .hero-in>*{margin:0;animation:rise .9s ease both}
 .hero-in>*:nth-child(2){animation-delay:.08s}
@@ -127,6 +127,14 @@ h3{margin:0;font-family:var(--font-display)}
 .theme .i-sun{display:none}
 :root[data-theme="dark"] .theme .i-sun{display:block}
 :root[data-theme="dark"] .theme .i-moon{display:none}
+
+
+/* Pemilih bahasa */
+.lang{position:fixed;z-index:20;top:calc(.75rem + env(safe-area-inset-top,0px));right:max(1rem,env(safe-area-inset-right,0px));display:flex;overflow:hidden;border:1px solid var(--deep-line);border-radius:99px;background:var(--deep);box-shadow:0 4px 18px rgba(0,0,0,.28)}
+.lang button{min-width:2.9rem;min-height:2.4rem;padding:.45rem .85rem;border:0;background:transparent;color:var(--deep-muted);font:600 .78rem/1 var(--font-body);letter-spacing:.12em;cursor:pointer;transition:background-color .2s,color .2s}
+.lang button:hover{color:var(--deep-gold)}
+.lang button[aria-pressed="true"]{background:var(--deep-gold);color:var(--deep)}
+.lang button:focus-visible{outline:2px solid var(--deep-gold);outline-offset:-4px}
 
 /* Pembuka */
 .salam{font:400 clamp(1.35rem,4.5vw,1.8rem)/1.35 var(--font-display);color:var(--accent);margin:0 0 1rem;text-wrap:balance}
@@ -245,6 +253,11 @@ img{max-width:100%}
   <span class="eq" aria-hidden="true"><i></i><i></i><i></i></span>
 </button>
 
+<div class="lang" role="group" aria-label="Bahasa / Language">
+  <button type="button" data-lang="id" lang="id" aria-label="Bahasa Indonesia" aria-pressed="true">ID</button>
+  <button type="button" data-lang="en" lang="en" aria-label="English" aria-pressed="false">EN</button>
+</div>
+
 <button class="theme" id="theme" type="button" aria-label="Ganti ke mode gelap" title="Ganti ke mode gelap">
   <svg class="i-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg>
   <svg class="i-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
@@ -256,19 +269,19 @@ img{max-width:100%}
   <div class="hero-in">
     <p class="bismillah" lang="ar" dir="rtl">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</p>
     <p class="jawa" lang="jv" aria-hidden="true">ꦱꦸꦒꦼꦁꦫꦮꦸꦃ</p>
-    <p class="eyebrow">Sugeng Rawuh &middot; Undangan Pernikahan</p>
+    <p data-i18n="eyebrow" class="eyebrow">Sugeng Rawuh &middot; Undangan Pernikahan</p>
     <h1 class="names" aria-label="Rizka dan Bagas">
       <span class="a">Rizka</span><span class="amp" aria-hidden="true">&amp;</span><span class="b">Bagas</span>
     </h1>
     <p class="fullnames">Rizka Ayu Wulandari, S.Pd. &amp; Bagas Prasetyo Aji, S.T.</p>
     <p class="date-line" data-ev="akad" data-fmt="pasaran">Sabtu Pahing, 21 November 2026</p>
     <div class="guest">
-      <small>Kepada Yth. Bapak/Ibu/Saudara/i</small>
+      <small data-i18n="guestTo">Kepada Yth. Bapak/Ibu/Saudara/i</small>
       <strong id="guest">Tamu Undangan</strong>
-      <small>di tempat</small>
+      <small data-i18n="guestAt">di tempat</small>
     </div>
-    <button class="btn btn-gold" id="open" type="button">Buka Undangan</button>
-    <p class="hint">Musik: <span id="music-title">Gending slendro (contoh)</span></p>
+    <button data-i18n="open" class="btn btn-gold" id="open" type="button">Buka Undangan</button>
+    <p class="hint"><span data-i18n="hintMusic">Musik:</span> <span id="music-title">Gending slendro (contoh)</span></p>
   </div>
 </header>
 
@@ -278,10 +291,10 @@ img{max-width:100%}
 <section class="sec center" id="pembuka">
   <div class="wrap">
     <h2 class="salam">Assalamu&rsquo;alaikum Warahmatullahi Wabarakatuh</h2>
-    <p class="lede">Dengan memohon rahmat dan ridho Allah Subhanahu wa Ta&rsquo;ala, kami bermaksud menyelenggarakan pernikahan putra dan putri kami. Merupakan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir, memberikan doa restu, dan menjadi saksi hari yang kami nantikan.</p>
+    <p data-i18n="intro" class="lede">Dengan memohon rahmat dan ridho Allah Subhanahu wa Ta&rsquo;ala, kami bermaksud menyelenggarakan pernikahan putra dan putri kami. Merupakan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir, memberikan doa restu, dan menjadi saksi hari yang kami nantikan.</p>
     <blockquote class="ayat" style="margin-inline:auto">
       <p class="ar" lang="ar" dir="rtl">وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُمْ مِنْ أَنْفُسِكُمْ أَزْوَاجًا لِتَسْكُنُوا إِلَيْهَا وَجَعَلَ بَيْنَكُمْ مَوَدَّةً وَرَحْمَةً ۚ إِنَّ فِي ذَٰلِكَ لَآيَاتٍ لِقَوْمٍ يَتَفَكَّرُونَ</p>
-      <p class="tr">Sebagian tanda kebesaran-Nya, Dia menciptakan pasangan bagi kalian dari diri kalian sendiri supaya kalian menemukan ketenangan bersamanya, lalu menumbuhkan cinta dan kasih sayang di antara kalian. Pada yang demikian itu ada tanda bagi orang-orang yang mau berpikir.</p>
+      <p data-i18n="ayat" class="tr">Sebagian tanda kebesaran-Nya, Dia menciptakan pasangan bagi kalian dari diri kalian sendiri supaya kalian menemukan ketenangan bersamanya, lalu menumbuhkan cinta dan kasih sayang di antara kalian. Pada yang demikian itu ada tanda bagi orang-orang yang mau berpikir.</p>
       <cite>QS. Ar-Rum: 21</cite>
     </blockquote>
   </div>
@@ -290,23 +303,23 @@ img{max-width:100%}
 <!-- MEMPELAI -->
 <section class="sec alt center" id="mempelai">
   <div class="wrap">
-    <p class="kicker">Kedua mempelai</p>
-    <h2>Dipersatukan dalam ikatan pernikahan</h2>
+    <p data-i18n="kCouple" class="kicker">Kedua mempelai</p>
+    <h2 data-i18n="hCouple">Dipersatukan dalam ikatan pernikahan</h2>
     <div class="couple">
       <!-- Ganti monogram dengan foto: <img class="mono" src="foto-mempelai-wanita.jpg" alt="Rizka"> -->
       <article class="person">
         <div class="mono" aria-hidden="true">R</div>
         <h3>Rizka Ayu Wulandari</h3>
-        <p class="gelar">S.Pd. &middot; Klaten, Jawa Tengah</p>
-        <p class="anak">Putri kedua dari</p>
-        <p class="ortu">Bapak Sutrisno Hadi<br>&amp; Ibu Sri Rahayu</p>
+        <p data-i18n="gelarR" class="gelar">S.Pd. &middot; Klaten, Jawa Tengah</p>
+        <p data-i18n="anakR" class="anak">Putri kedua dari</p>
+        <p data-i18n="ortuR" class="ortu">Bapak Sutrisno Hadi<br>&amp; Ibu Sri Rahayu</p>
       </article>
       <article class="person">
         <div class="mono" aria-hidden="true">B</div>
         <h3>Bagas Prasetyo Aji</h3>
-        <p class="gelar">S.T. &middot; Sukoharjo, Jawa Tengah</p>
-        <p class="anak">Putra pertama dari</p>
-        <p class="ortu">Bapak Slamet Widodo<br>&amp; Ibu Endang Lestari</p>
+        <p data-i18n="gelarB" class="gelar">S.T. &middot; Sukoharjo, Jawa Tengah</p>
+        <p data-i18n="anakB" class="anak">Putra pertama dari</p>
+        <p data-i18n="ortuB" class="ortu">Bapak Slamet Widodo<br>&amp; Ibu Endang Lestari</p>
       </article>
     </div>
   </div>
@@ -316,18 +329,18 @@ img{max-width:100%}
 <section class="sec deep has-orn center" id="hitung-mundur">
   <svg class="orn" aria-hidden="true" focusable="false"><rect width="100%" height="100%" fill="url(#kawung)"/></svg>
   <div class="wrap">
-    <p class="kicker">Hitung mundur</p>
-    <h2>Menuju hari bahagia</h2>
-    <div class="count" id="cd-grid" role="timer" aria-label="Hitung mundur menuju akad nikah">
-      <div class="cell"><b id="cd-d">49</b><span>Hari</span></div>
-      <div class="cell"><b id="cd-h">12</b><span>Jam</span></div>
-      <div class="cell"><b id="cd-m">20</b><span>Menit</span></div>
-      <div class="cell"><b id="cd-s">00</b><span>Detik</span></div>
+    <p data-i18n="kCount" class="kicker">Hitung mundur</p>
+    <h2 data-i18n="hCount">Menuju hari bahagia</h2>
+    <div class="count" id="cd-grid" role="timer" aria-label="Hitung mundur menuju akad nikah" data-i18n-aria="timerAria">
+      <div class="cell"><b id="cd-d">49</b><span data-i18n="unitD">Hari</span></div>
+      <div class="cell"><b id="cd-h">12</b><span data-i18n="unitH">Jam</span></div>
+      <div class="cell"><b id="cd-m">20</b><span data-i18n="unitM">Menit</span></div>
+      <div class="cell"><b id="cd-s">00</b><span data-i18n="unitS">Detik</span></div>
     </div>
-    <p class="done" id="cd-done" hidden>Alhamdulillah, hari bahagia telah tiba.</p>
-    <p class="count-note">Dihitung dari hari ini, <strong id="cd-now">Jumat, 2 Oktober 2026</strong>, sampai akad nikah pada <strong><span data-ev="akad" data-fmt="pasaran">Sabtu Pahing, 21 November 2026</span>, pukul <span data-time-start="akad">08.00 WIB</span></strong>.</p>
+    <p data-i18n="done" class="done" id="cd-done" hidden>Alhamdulillah, hari bahagia telah tiba.</p>
+    <p class="count-note"><span data-i18n="cn1">Dihitung dari hari ini,</span> <strong id="cd-now">Jumat, 2 Oktober 2026</strong>, <span data-i18n="cn2">sampai akad nikah pada</span> <strong><span data-ev="akad" data-fmt="pasaran">Sabtu Pahing, 21 November 2026</span>, <span data-i18n="cn3">pukul</span> <span data-time-start="akad">08.00 WIB</span></strong>.</p>
     <div class="actions" style="justify-content:center">
-      <a class="btn btn-line" id="cal" href="#" target="_blank" rel="noopener">Simpan ke Google Calendar</a>
+      <a data-i18n="cal" class="btn btn-line" id="cal" href="#" target="_blank" rel="noopener">Simpan ke Google Calendar</a>
     </div>
   </div>
 </section>
@@ -335,26 +348,26 @@ img{max-width:100%}
 <!-- ACARA -->
 <section class="sec" id="acara">
   <div class="wrap">
-    <p class="kicker">Acara</p>
-    <h2>Hari pernikahan</h2>
-    <p class="lede" style="margin-inline:0">Kami mengundang Bapak/Ibu/Saudara/i pada rangkaian acara berikut.</p>
+    <p data-i18n="kEvents" class="kicker">Acara</p>
+    <h2 data-i18n="hEvents">Hari pernikahan</h2>
+    <p data-i18n="eventsLede" class="lede" style="margin-inline:0">Kami mengundang Bapak/Ibu/Saudara/i pada rangkaian acara berikut.</p>
     <div class="events">
       <article class="event">
-        <h3>Akad Nikah</h3>
+        <h3 data-i18n="akad">Akad Nikah</h3>
         <p class="time" data-time="akad">08.00 &ndash; 09.30 WIB</p>
         <p class="tgl" data-ev="akad" data-fmt="full">Sabtu, 21 November 2026</p>
         <dl>
-          <div><dt>Tempat</dt><dd>Pendopo Agung Kusuma Negara</dd></div>
-          <div><dt>Keterangan</dt><dd>Ijab qabul dihadiri keluarga dan kerabat dekat.</dd></div>
+          <div><dt data-i18n="dtVenue">Tempat</dt><dd>Pendopo Agung Kusuma Negara</dd></div>
+          <div><dt data-i18n="dtNotes">Keterangan</dt><dd data-i18n="ddNotes">Ijab qabul dihadiri keluarga dan kerabat dekat.</dd></div>
         </dl>
       </article>
       <article class="event">
-        <h3>Resepsi</h3>
+        <h3 data-i18n="resepsi">Resepsi</h3>
         <p class="time" data-time="resepsi">11.00 &ndash; 14.00 WIB</p>
         <p class="tgl" data-ev="resepsi" data-fmt="full">Sabtu, 21 November 2026</p>
         <dl>
-          <div><dt>Tempat</dt><dd>Pendopo Agung Kusuma Negara</dd></div>
-          <div><dt>Busana</dt><dd>Batik atau kebaya, nuansa hijau dan emas.</dd></div>
+          <div><dt data-i18n="dtVenue">Tempat</dt><dd>Pendopo Agung Kusuma Negara</dd></div>
+          <div><dt data-i18n="dtDress">Busana</dt><dd data-i18n="ddDress">Batik atau kebaya, nuansa hijau dan emas.</dd></div>
         </dl>
       </article>
     </div>
@@ -364,49 +377,49 @@ img{max-width:100%}
 <!-- RANGKAIAN ADAT -->
 <section class="sec alt" id="adat">
   <div class="wrap">
-    <p class="kicker">Rangkaian adat</p>
-    <h2>Dari siraman sampai resepsi</h2>
+    <p data-i18n="kAdat" class="kicker">Rangkaian adat</p>
+    <h2 data-i18n="hAdat">Dari siraman sampai resepsi</h2>
     <ol class="adat">
       <li>
         <div class="when"><b data-ev="siraman" data-fmt="compact">Jum, 20 Nov</b><span data-time-start="siraman">09.00 WIB</span></div>
         <span class="rail" aria-hidden="true"></span>
         <div class="what">
-          <h3>Siraman</h3>
-          <p>Calon pengantin dimandikan dengan air bunga setaman sebagai doa agar bersih lahir dan batin.</p>
-          <span class="tag">Khusus keluarga</span>
+          <h3 data-i18n="siraman">Siraman</h3>
+          <p data-i18n="siramanP">Calon pengantin dimandikan dengan air bunga setaman sebagai doa agar bersih lahir dan batin.</p>
+          <span data-i18n="tagFam" class="tag">Khusus keluarga</span>
         </div>
       </li>
       <li>
         <div class="when"><b data-ev="midodareni" data-fmt="compact">Jum, 20 Nov</b><span data-time-start="midodareni">19.30 WIB</span></div>
         <span class="rail" aria-hidden="true"></span>
         <div class="what">
-          <h3>Midodareni</h3>
-          <p>Malam sebelum akad. Keluarga berkumpul, memanjatkan doa, dan calon mempelai pria bersilaturahmi ke kediaman calon mempelai wanita.</p>
-          <span class="tag">Khusus keluarga</span>
+          <h3 data-i18n="midodareni">Midodareni</h3>
+          <p data-i18n="midoP">Malam sebelum akad. Keluarga berkumpul, memanjatkan doa, dan calon mempelai pria bersilaturahmi ke kediaman calon mempelai wanita.</p>
+          <span data-i18n="tagFam" class="tag">Khusus keluarga</span>
         </div>
       </li>
       <li>
         <div class="when"><b data-ev="akad" data-fmt="compact">Sab, 21 Nov</b><span data-time-start="akad">08.00 WIB</span></div>
         <span class="rail" aria-hidden="true"></span>
         <div class="what">
-          <h3>Ijab Qabul</h3>
-          <p>Akad nikah dilaksanakan secara Islam di hadapan wali, saksi, dan keluarga.</p>
+          <h3 data-i18n="ijab">Ijab Qabul</h3>
+          <p data-i18n="ijabP">Akad nikah dilaksanakan secara Islam di hadapan wali, saksi, dan keluarga.</p>
         </div>
       </li>
       <li>
         <div class="when"><b data-ev="panggih" data-fmt="compact">Sab, 21 Nov</b><span data-time-start="panggih">10.00 WIB</span></div>
         <span class="rail" aria-hidden="true"></span>
         <div class="what">
-          <h3>Panggih</h3>
-          <p>Temu manten: balangan gantal, wijik atau membasuh kaki, dan sungkeman kepada kedua orang tua.</p>
+          <h3 data-i18n="panggih">Panggih</h3>
+          <p data-i18n="panggihP">Temu manten: balangan gantal, wijik atau membasuh kaki, dan sungkeman kepada kedua orang tua.</p>
         </div>
       </li>
       <li>
         <div class="when"><b data-ev="resepsi" data-fmt="compact">Sab, 21 Nov</b><span data-time-start="resepsi">11.00 WIB</span></div>
         <span class="rail" aria-hidden="true"></span>
         <div class="what">
-          <h3>Resepsi</h3>
-          <p>Tamu undangan memberikan doa restu kepada kedua mempelai dan keluarga.</p>
+          <h3 data-i18n="resepsi">Resepsi</h3>
+          <p data-i18n="resepsiP">Tamu undangan memberikan doa restu kepada kedua mempelai dan keluarga.</p>
         </div>
       </li>
     </ol>
@@ -416,12 +429,12 @@ img{max-width:100%}
 <!-- LOKASI -->
 <section class="sec" id="lokasi">
   <div class="wrap">
-    <p class="kicker">Lokasi</p>
+    <p data-i18n="kLoc" class="kicker">Lokasi</p>
     <h2>Pendopo Agung Kusuma Negara</h2>
     <div class="lokasi">
       <div>
         <div class="mapbox" id="mapbox">
-          <svg viewBox="0 0 400 300" role="img" aria-label="Ilustrasi peta lokasi acara di Jalan Slamet Riyadi">
+          <svg viewBox="0 0 400 300" role="img" aria-label="Ilustrasi peta lokasi acara di Jalan Slamet Riyadi" data-i18n-aria="mapAria">
             <rect width="400" height="300" fill="var(--map-land)"/>
             <rect x="312" y="178" width="76" height="100" rx="6" fill="var(--map-park)"/>
             <rect x="18" y="72" width="78" height="58" rx="4" fill="var(--map-park)"/>
@@ -440,17 +453,17 @@ img{max-width:100%}
             <text class="ml ml-halo" x="200" y="196" text-anchor="middle">Pendopo Agung Kusuma Negara</text>
           </svg>
         </div>
-        <p class="mapcap" id="mapcap">Ilustrasi lokasi. Buka Google Maps untuk peta sebenarnya.</p>
+        <p data-i18n="mapcap" class="mapcap" id="mapcap">Ilustrasi lokasi. Buka Google Maps untuk peta sebenarnya.</p>
       </div>
       <div>
         <address>
           <p class="venue">Pendopo Agung Kusuma Negara</p>
-          <p class="alamat" id="alamat">Jl. Slamet Riyadi No. 120, Kota Surakarta, Jawa Tengah</p>
+          <p data-i18n="alamat" class="alamat" id="alamat">Jl. Slamet Riyadi No. 120, Kota Surakarta, Jawa Tengah</p>
         </address>
         <div class="actions">
-          <a class="btn btn-ink" id="maps" href="#" target="_blank" rel="noopener">Buka di Google Maps</a>
-          <a class="btn btn-outline" id="dir" href="#" target="_blank" rel="noopener">Petunjuk arah</a>
-          <button class="btn btn-outline" id="copy" type="button">Salin alamat</button>
+          <a data-i18n="maps" class="btn btn-ink" id="maps" href="#" target="_blank" rel="noopener">Buka di Google Maps</a>
+          <a data-i18n="dir" class="btn btn-outline" id="dir" href="#" target="_blank" rel="noopener">Petunjuk arah</a>
+          <button data-i18n="copy" class="btn btn-outline" id="copy" type="button">Salin alamat</button>
         </div>
       </div>
     </div>
@@ -461,19 +474,19 @@ img{max-width:100%}
 <section class="sec deep has-orn" id="tanda-kasih">
   <svg class="orn" aria-hidden="true" focusable="false"><rect width="100%" height="100%" fill="url(#kawung)"/></svg>
   <div class="wrap">
-    <p class="kicker">Tanda kasih</p>
-    <h2>Amplop digital</h2>
+    <p data-i18n="kGift" class="kicker">Tanda kasih</p>
+    <h2 data-i18n="hGift">Amplop digital</h2>
     <div class="qris">
       <div>
-        <p>Kehadiran dan doa Bapak/Ibu/Saudara/i sudah menjadi hadiah terindah bagi kami. Bila ingin memberikan tanda kasih, silakan pindai kode QRIS dengan aplikasi mobile banking atau dompet digital.</p>
-        <h3>Kirim kado</h3>
-        <p class="kado">Kediaman mempelai wanita<br>Jl. Melati No. 7, Klaten, Jawa Tengah<br>Penerima: Ibu Sri Rahayu</p>
+        <p data-i18n="giftP">Kehadiran dan doa Bapak/Ibu/Saudara/i sudah menjadi hadiah terindah bagi kami. Bila ingin memberikan tanda kasih, silakan pindai kode QRIS dengan aplikasi mobile banking atau dompet digital.</p>
+        <h3 data-i18n="kado">Kirim kado</h3>
+        <p data-i18n="kadoP" class="kado">Kediaman mempelai wanita<br>Jl. Melati No. 7, Klaten, Jawa Tengah<br>Penerima: Ibu Sri Rahayu</p>
       </div>
       <figure class="qr-card" style="margin:0">
         <div class="qr-head">QRIS</div>
         <div id="qris-box"></div>
-        <p class="an">a.n. Rizka &amp; Bagas</p>
-        <p class="contoh" id="qris-note">Kode contoh. Ganti dengan QRIS asli.</p>
+        <p data-i18n="an" class="an">a.n. Rizka &amp; Bagas</p>
+        <p data-i18n="contoh" class="contoh" id="qris-note">Kode contoh. Ganti dengan QRIS asli.</p>
       </figure>
     </div>
   </div>
@@ -482,27 +495,27 @@ img{max-width:100%}
 <!-- PENUTUP -->
 <section class="sec alt center" id="penutup">
   <div class="wrap">
-    <p class="kicker">Penutup</p>
-    <h2>Matur nuwun</h2>
-    <p class="lede">Merupakan kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir dan mendoakan kedua mempelai. Atas doa dan kehadirannya, kami ucapkan terima kasih.</p>
+    <p data-i18n="kClose" class="kicker">Penutup</p>
+    <h2 data-i18n="hClose">Matur nuwun</h2>
+    <p data-i18n="closeP" class="lede">Merupakan kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir dan mendoakan kedua mempelai. Atas doa dan kehadirannya, kami ucapkan terima kasih.</p>
     <div class="doa">
       <p class="ar" lang="ar" dir="rtl">بَارَكَ اللَّهُ لَكُمَا وَبَارَكَ عَلَيْكُمَا وَجَمَعَ بَيْنَكُمَا فِي خَيْرٍ</p>
-      <p class="tr">Semoga Allah memberkahi kalian berdua, melimpahkan berkah atas kalian, dan menyatukan kalian dalam kebaikan.</p>
+      <p data-i18n="doaTr" class="tr">Semoga Allah memberkahi kalian berdua, melimpahkan berkah atas kalian, dan menyatukan kalian dalam kebaikan.</p>
     </div>
     <div class="rule" aria-hidden="true"><i></i></div>
     <p>Wassalamu&rsquo;alaikum Warahmatullahi Wabarakatuh</p>
     <p class="close-names">Rizka &amp; Bagas</p>
-    <p class="keluarga"><span>Keluarga Bapak Sutrisno Hadi</span><span>Keluarga Bapak Slamet Widodo</span></p>
+    <p class="keluarga"><span data-i18n="famR">Keluarga Bapak Sutrisno Hadi</span><span data-i18n="famB">Keluarga Bapak Slamet Widodo</span></p>
     <div class="rsvp">
-      <p>Mohon konfirmasi kehadiran agar kami dapat menyiapkan tempat dengan baik.</p>
-      <a class="btn btn-ink" id="wa" href="#" target="_blank" rel="noopener">Konfirmasi lewat WhatsApp</a>
+      <p data-i18n="rsvpP">Mohon konfirmasi kehadiran agar kami dapat menyiapkan tempat dengan baik.</p>
+      <a data-i18n="wa" class="btn btn-ink" id="wa" href="#" target="_blank" rel="noopener">Konfirmasi lewat WhatsApp</a>
     </div>
   </div>
 </section>
 
 </main>
 
-<footer class="foot"><p>Undangan contoh dengan isi dummy.</p></footer>
+<footer class="foot"><p data-i18n="foot">Undangan contoh dengan isi dummy.</p></footer>
 
 </div>
 
@@ -524,7 +537,10 @@ img{max-width:100%}
       di luar Artifact agar peta tampil langsung (iframe diblokir di Artifact).
    4. QRIS             : isi CONFIG.qris.image dengan gambar QRIS asli.
    5. Warna terang/gelap: ubah token di :root dan :root[data-theme="dark"] pada CSS.
-   6. Teks lain (nama, orang tua, alamat) langsung di HTML.
+   6. Bahasa           : teks Indonesia ada di HTML, teks Inggris ada di objek EN
+      dan JS_STR di bawah. Bahasa awal "id". Tautan ?lang=en membuka versi Inggris.
+      Untuk mengubah teks, ubah di HTML (Indonesia) dan di EN (Inggris).
+   7. Nama tamu        : tambahkan ke tautan, misalnya ...#Bapak-Andi-Wijaya
    ===================================================================== */
 const CONFIG = {
   tz: 'Asia/Jakarta',            // WIB, UTC+7
@@ -546,6 +562,7 @@ const CONFIG = {
   music: {
     src: '',                                  // contoh: 'gending.mp3'
     title: 'Gending slendro (contoh)',
+    titleEn: 'Slendro gamelan (sample)',
     volume: 0.55
   },
   qris: {
@@ -559,16 +576,140 @@ const $ = (s, r) => (r || document).querySelector(s);
 const $$ = (s, r) => Array.from((r || document).querySelectorAll(s));
 const pad = n => String(n).padStart(2, '0');
 const reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+const onLang = [];
+
+/* ---------- Bahasa ---------- */
+const EN = {
+  "eyebrow": "Sugeng Rawuh &middot; Wedding Invitation",
+  "guestTo": "Dear Mr./Mrs./Ms.",
+  "guestAt": "You are warmly invited",
+  "open": "Open Invitation",
+  "hintMusic": "Music:",
+  "intro": "Seeking the mercy and blessing of Allah Subhanahu wa Ta&rsquo;ala, we are delighted to hold the wedding of our son and daughter. It would bring us great joy if you could attend, offer your prayers and blessings, and witness the day we have been waiting for.",
+  "ayat": "And among His signs is that He created for you spouses from among yourselves so that you may find tranquility in them, and He placed between you love and mercy. Indeed, in that are signs for people who reflect.",
+  "kCouple": "The couple",
+  "hCouple": "United in marriage",
+  "gelarR": "S.Pd. &middot; Klaten, Central Java",
+  "gelarB": "S.T. &middot; Sukoharjo, Central Java",
+  "anakR": "Second daughter of",
+  "anakB": "First son of",
+  "ortuR": "Mr. Sutrisno Hadi<br>&amp; Mrs. Sri Rahayu",
+  "ortuB": "Mr. Slamet Widodo<br>&amp; Mrs. Endang Lestari",
+  "kCount": "Countdown",
+  "hCount": "Counting down to our big day",
+  "unitD": "Days",
+  "unitH": "Hours",
+  "unitM": "Minutes",
+  "unitS": "Seconds",
+  "done": "Alhamdulillah, the big day has arrived.",
+  "cn1": "Counting from today,",
+  "cn2": "until the marriage ceremony on",
+  "cn3": "at",
+  "cal": "Add to Google Calendar",
+  "timerAria": "Countdown to the marriage ceremony",
+  "kEvents": "Events",
+  "hEvents": "The wedding day",
+  "eventsLede": "We warmly invite you to join us at the following events.",
+  "akad": "Marriage Ceremony (Akad Nikah)",
+  "resepsi": "Reception",
+  "dtVenue": "Venue",
+  "dtNotes": "Notes",
+  "ddNotes": "The ijab qabul is attended by family and close relatives.",
+  "dtDress": "Dress code",
+  "ddDress": "Batik or kebaya, in green and gold tones.",
+  "kAdat": "Traditional ceremonies",
+  "hAdat": "From siraman to reception",
+  "siraman": "Siraman (Ritual Bathing)",
+  "siramanP": "The bride and groom are bathed with flower water as a prayer for purity of body and soul.",
+  "tagFam": "Family only",
+  "midodareni": "Midodareni",
+  "midoP": "The night before the akad. Families gather to pray, and the groom visits the bride&rsquo;s home.",
+  "ijab": "Ijab Qabul (Marriage Vows)",
+  "ijabP": "The Islamic marriage contract, held before the guardian, witnesses, and family.",
+  "panggih": "Panggih (Meeting of the Couple)",
+  "panggihP": "The couple meets: the betel-leaf throwing (balangan gantal), the foot washing (wijik), and the kneeling reverence to both parents (sungkeman).",
+  "resepsiP": "Guests offer their blessings to the couple and their families.",
+  "kLoc": "Location",
+  "mapAria": "Illustrated map of the venue on Jalan Slamet Riyadi",
+  "mapcap": "Location illustration. Open Google Maps for the real map.",
+  "alamat": "Jl. Slamet Riyadi No. 120, Surakarta City, Central Java",
+  "maps": "Open in Google Maps",
+  "dir": "Directions",
+  "copy": "Copy address",
+  "kGift": "Gift",
+  "hGift": "Digital gift",
+  "giftP": "Your presence and prayers are the most wonderful gift to us. If you would like to send a token of love, please scan the QRIS code with your mobile banking or e-wallet app.",
+  "kado": "Send a gift",
+  "kadoP": "The bride&rsquo;s family home<br>Jl. Melati No. 7, Klaten, Central Java<br>Recipient: Mrs. Sri Rahayu",
+  "an": "Account name: Rizka &amp; Bagas",
+  "contoh": "Sample code. Replace with the real QRIS.",
+  "kClose": "Closing",
+  "hClose": "Thank you",
+  "closeP": "It is an honor and a joy for us if you can attend and pray for the couple. Thank you for your prayers and your presence.",
+  "doaTr": "May Allah bless you both, shower His blessings upon you, and unite you in goodness.",
+  "famR": "The family of Mr. Sutrisno Hadi",
+  "famB": "The family of Mr. Slamet Widodo",
+  "rsvpP": "Please confirm your attendance so we can prepare accordingly.",
+  "wa": "Confirm via WhatsApp",
+  "foot": "Sample invitation with dummy content."
+};
+const JS_STR = {
+  id: {
+    title: 'Undangan Rizka & Bagas', guest: 'Tamu Undangan', guestWa: 'Tamu Undangan', at: 'pukul',
+    copied: 'Alamat tersalin', copySel: 'Alamat terpilih, salin manual',
+    musicPlay: 'Putar musik latar', musicPause: 'Jeda musik latar',
+    themeToDark: 'Ganti ke mode gelap', themeToLight: 'Ganti ke mode terang',
+    qrFail: 'Kode QRIS belum bisa dimuat. Muat ulang halaman.',
+    qrAlt: 'Kode QRIS contoh', qrAltReal: 'Kode QRIS untuk tanda kasih',
+    calTitle: function (c) { return 'Pernikahan ' + c; },
+    calDetails: function (a, r) { return 'Akad nikah ' + a + ' WIB, resepsi ' + r + ' WIB.'; },
+    wa: function (g, c) { return 'Assalamu’alaikum, saya ' + g + ' mengonfirmasi kehadiran di pernikahan ' + c + '.'; }
+  },
+  en: {
+    title: 'Rizka & Bagas Wedding Invitation', guest: 'Dear Guest', guestWa: 'a guest', at: 'at',
+    copied: 'Address copied', copySel: 'Address selected, copy manually',
+    musicPlay: 'Play background music', musicPause: 'Pause background music',
+    themeToDark: 'Switch to dark mode', themeToLight: 'Switch to light mode',
+    qrFail: 'The QRIS code could not be loaded. Please reload the page.',
+    qrAlt: 'Sample QRIS code', qrAltReal: 'QRIS code for the wedding gift',
+    calTitle: function (c) { return 'Wedding of ' + c; },
+    calDetails: function (a, r) { return 'Marriage ceremony ' + a + ' WIB, reception ' + r + ' WIB.'; },
+    wa: function (g, c) { return 'Assalamu’alaikum, this is ' + g + ' confirming attendance at the wedding of ' + c + '.'; }
+  }
+};
+let lang = 'id';
+try { const s = localStorage.getItem('undangan-bahasa'); if (s === 'id' || s === 'en') lang = s; } catch (e) {}
+try { const q = new URLSearchParams(location.search).get('lang'); if (q === 'id' || q === 'en') lang = q; } catch (e) {}
+const T = k => JS_STR[lang][k];
+
+const i18nEls = $$('[data-i18n]');
+i18nEls.forEach(el => { el.__id = el.innerHTML; });
+const ariaEls = $$('[data-i18n-aria]');
+ariaEls.forEach(el => { el.__aid = el.getAttribute('aria-label'); });
+function applyStatic() {
+  i18nEls.forEach(el => {
+    const en = EN[el.getAttribute('data-i18n')];
+    el.innerHTML = (lang === 'en' && en !== undefined) ? en : el.__id;
+  });
+  ariaEls.forEach(el => {
+    const en = EN[el.getAttribute('data-i18n-aria')];
+    el.setAttribute('aria-label', (lang === 'en' && en !== undefined) ? en : el.__aid);
+  });
+}
 
 /* ---------- Tanggal, pasaran, jam ---------- */
 const PASARAN = ['Legi', 'Pahing', 'Pon', 'Wage', 'Kliwon'];
-const dtf = new Intl.DateTimeFormat('id-ID', {
-  timeZone: CONFIG.tz, weekday: 'long', day: 'numeric', month: 'long', year: 'numeric',
-  hour: '2-digit', minute: '2-digit', hourCycle: 'h23'
-});
+const dtfs = {};
+function getDtf() {
+  const loc = lang === 'en' ? 'en-US' : 'id-ID';
+  return dtfs[loc] || (dtfs[loc] = new Intl.DateTimeFormat(loc, {
+    timeZone: CONFIG.tz, weekday: 'long', day: 'numeric', month: 'long', year: 'numeric',
+    hour: '2-digit', minute: '2-digit', hourCycle: 'h23'
+  }));
+}
 function parts(date) {
   const o = {};
-  dtf.formatToParts(date).forEach(p => { o[p.type] = p.value; });
+  getDtf().formatToParts(date).forEach(p => { o[p.type] = p.value; });
   return o;
 }
 function pasaran(date) {
@@ -578,46 +719,53 @@ function pasaran(date) {
 }
 function fmt(date, kind) {
   const p = parts(date);
-  if (kind === 'compact') return p.weekday.slice(0, 3) + ', ' + p.day + ' ' + p.month.slice(0, 3);
-  if (kind === 'pasaran') return p.weekday + ' ' + pasaran(date) + ', ' + p.day + ' ' + p.month + ' ' + p.year;
-  return p.weekday + ', ' + p.day + ' ' + p.month + ' ' + p.year;
+  if (kind === 'compact') {
+    return lang === 'en'
+      ? p.weekday.slice(0, 3) + ', ' + p.month.slice(0, 3) + ' ' + p.day
+      : p.weekday.slice(0, 3) + ', ' + p.day + ' ' + p.month.slice(0, 3);
+  }
+  const w = kind === 'pasaran' ? p.weekday + ' ' + pasaran(date) : p.weekday;
+  return lang === 'en'
+    ? w + ', ' + p.month + ' ' + p.day + ', ' + p.year
+    : w + ', ' + p.day + ' ' + p.month + ' ' + p.year;
 }
-const hm = d => { const p = parts(d); return p.hour + '.' + p.minute; };
+const hm = d => { const p = parts(d); return p.hour + (lang === 'en' ? ':' : '.') + p.minute; };
 
-$$('[data-ev]').forEach(el => {
-  const ev = CONFIG.events[el.dataset.ev];
-  if (ev) el.textContent = fmt(new Date(ev.start), el.dataset.fmt || 'full');
-});
-$$('[data-time]').forEach(el => {
-  const ev = CONFIG.events[el.dataset.time];
-  if (!ev) return;
-  el.textContent = ev.end
-    ? hm(new Date(ev.start)) + ' – ' + hm(new Date(ev.end)) + ' WIB'
-    : hm(new Date(ev.start)) + ' WIB';
-});
-$$('[data-time-start]').forEach(el => {
-  const ev = CONFIG.events[el.dataset.timeStart];
-  if (ev) el.textContent = hm(new Date(ev.start)) + ' WIB';
-});
+function renderDates() {
+  $$('[data-ev]').forEach(el => {
+    const ev = CONFIG.events[el.dataset.ev];
+    if (ev) el.textContent = fmt(new Date(ev.start), el.dataset.fmt || 'full');
+  });
+  $$('[data-time]').forEach(el => {
+    const ev = CONFIG.events[el.dataset.time];
+    if (!ev) return;
+    el.textContent = ev.end
+      ? hm(new Date(ev.start)) + ' – ' + hm(new Date(ev.end)) + ' WIB'
+      : hm(new Date(ev.start)) + ' WIB';
+  });
+  $$('[data-time-start]').forEach(el => {
+    const ev = CONFIG.events[el.dataset.timeStart];
+    if (ev) el.textContent = hm(new Date(ev.start)) + ' WIB';
+  });
+}
 
 /* ---------- Nama tamu: #Bapak-Andi-Wijaya atau ?to=Bapak+Andi ---------- */
-function guestName() {
+function guestRaw() {
   let raw = '';
   try { raw = decodeURIComponent((location.hash || '').slice(1)); } catch (e) { raw = ''; }
   if (raw && document.getElementById(raw)) raw = '';
   if (!raw) { try { raw = new URLSearchParams(location.search).get('to') || ''; } catch (e) { raw = ''; } }
-  raw = raw.replace(/[-_+]+/g, ' ').replace(/\s+/g, ' ').trim().slice(0, 60);
-  return raw || 'Tamu Undangan';
+  return raw.replace(/[-_+]+/g, ' ').replace(/\s+/g, ' ').trim().slice(0, 60);
 }
-const guest = guestName();
-$('#guest').textContent = guest;
+const rawGuest = guestRaw();
+const guestName = () => rawGuest || T('guest');
 
 /* ---------- Hitung mundur dari hari ini ---------- */
 const target = new Date(CONFIG.events[CONFIG.countdownTo].start).getTime();
 const cd = { d: $('#cd-d'), h: $('#cd-h'), m: $('#cd-m'), s: $('#cd-s') };
 function tick() {
   const now = new Date();
-  $('#cd-now').textContent = fmt(now, 'full') + ', pukul ' + hm(now) + ' WIB';
+  $('#cd-now').textContent = fmt(now, 'full') + ', ' + T('at') + ' ' + hm(now) + ' WIB';
   const diff = target - now.getTime();
   const finished = diff <= 0;
   $('#cd-grid').hidden = finished;
@@ -628,7 +776,6 @@ function tick() {
   cd.m.textContent = pad(Math.floor(diff % 36e5 / 6e4));
   cd.s.textContent = pad(Math.floor(diff % 6e4 / 1e3));
 }
-tick();
 setInterval(tick, 1000);
 
 /* ---------- Tautan: kalender, peta, WhatsApp ---------- */
@@ -639,14 +786,15 @@ $('#dir').href = 'https://www.google.com/maps/dir/?api=1&destination=' + q;
 
 const calStamp = d => new Date(d).toISOString().replace(/[-:]|\.\d{3}/g, '');
 const evA = CONFIG.events.akad, evR = CONFIG.events.resepsi;
-$('#cal').href = 'https://calendar.google.com/calendar/render?action=TEMPLATE'
-  + '&text=' + enc('Pernikahan ' + CONFIG.couple)
-  + '&dates=' + calStamp(evA.start) + '/' + calStamp(evR.end || evR.start)
-  + '&location=' + enc(CONFIG.venue.name + ', ' + CONFIG.venue.address)
-  + '&details=' + enc('Akad nikah ' + hm(new Date(evA.start)) + ' WIB, resepsi ' + hm(new Date(evR.start)) + ' WIB.');
-
-$('#wa').href = 'https://wa.me/' + CONFIG.whatsapp.number + '?text='
-  + enc('Assalamu’alaikum, saya ' + guest + ' mengonfirmasi kehadiran di pernikahan ' + CONFIG.couple + '.');
+function updateLinks() {
+  $('#cal').href = 'https://calendar.google.com/calendar/render?action=TEMPLATE'
+    + '&text=' + enc(T('calTitle')(CONFIG.couple))
+    + '&dates=' + calStamp(evA.start) + '/' + calStamp(evR.end || evR.start)
+    + '&location=' + enc(CONFIG.venue.name + ', ' + CONFIG.venue.address)
+    + '&details=' + enc(T('calDetails')(hm(new Date(evA.start)), hm(new Date(evR.start))));
+  $('#wa').href = 'https://wa.me/' + CONFIG.whatsapp.number + '?text='
+    + enc(T('wa')(rawGuest || T('guestWa'), CONFIG.couple));
+}
 
 if (CONFIG.venue.embed) {
   const f = document.createElement('iframe');
@@ -671,39 +819,44 @@ $('#copy').addEventListener('click', async function () {
     sel.removeAllRanges();
     sel.addRange(r);
   }
-  const old = btn.textContent;
-  btn.textContent = ok ? 'Alamat tersalin' : 'Alamat terpilih, salin manual';
-  setTimeout(() => { btn.textContent = old; }, 2200);
+  btn.textContent = ok ? T('copied') : T('copySel');
+  setTimeout(applyStatic, 2200);
 });
 
 /* ---------- QRIS ---------- */
 (function () {
   const box = $('#qris-box');
+  function qrLabel() {
+    const o = box.querySelector('img') || box.querySelector('canvas');
+    if (o) o.setAttribute(o.tagName === 'IMG' ? 'alt' : 'aria-label', T(CONFIG.qris.image ? 'qrAltReal' : 'qrAlt'));
+  }
   function fallback() {
     box.replaceChildren();
     const p = document.createElement('p');
     p.className = 'qr-fallback';
-    p.textContent = 'Kode QRIS belum bisa dimuat. Muat ulang halaman.';
+    p.textContent = T('qrFail');
     box.appendChild(p);
   }
   if (CONFIG.qris.image) {
     const img = document.createElement('img');
     img.src = CONFIG.qris.image;
-    img.alt = 'Kode QRIS untuk tanda kasih';
     box.appendChild(img);
     $('#qris-note').hidden = true;
-    return;
+  } else if (!window.QRCode) {
+    fallback();
+  } else {
+    try {
+      new QRCode(box, {
+        text: CONFIG.qris.payload, width: 208, height: 208,
+        colorDark: '#0b0f0d', colorLight: '#ffffff',
+        correctLevel: QRCode.CorrectLevel.M
+      });
+    } catch (e) { fallback(); }
   }
-  if (!window.QRCode) { fallback(); return; }
-  try {
-    new QRCode(box, {
-      text: CONFIG.qris.payload, width: 208, height: 208,
-      colorDark: '#0b0f0d', colorLight: '#ffffff',
-      correctLevel: QRCode.CorrectLevel.M
-    });
-    const out = box.querySelector('img') || box.querySelector('canvas');
-    if (out) out.setAttribute('aria-label', 'Kode QRIS contoh');
-  } catch (e) { fallback(); }
+  onLang.push(function () {
+    const p = box.querySelector('.qr-fallback');
+    if (p) p.textContent = T('qrFail'); else qrLabel();
+  });
 })();
 
 /* ---------- Mode terang / gelap ---------- */
@@ -713,12 +866,12 @@ $('#copy').addEventListener('click', async function () {
   let saved = null;
   try { saved = localStorage.getItem('undangan-tema'); } catch (e) { saved = null; }
   if (saved !== 'light' && saved !== 'dark') saved = null;
-  function apply(mode) {
-    root.setAttribute('data-theme', mode);
-    const next = mode === 'dark' ? 'terang' : 'gelap';
-    btn.setAttribute('aria-label', 'Ganti ke mode ' + next);
-    btn.title = 'Ganti ke mode ' + next;
+  function label() {
+    const l = T(root.getAttribute('data-theme') === 'dark' ? 'themeToLight' : 'themeToDark');
+    btn.setAttribute('aria-label', l);
+    btn.title = l;
   }
+  function apply(mode) { root.setAttribute('data-theme', mode); label(); }
   apply(saved || (mq && mq.matches ? 'dark' : 'light'));
   btn.addEventListener('click', function () {
     const mode = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
@@ -729,6 +882,7 @@ $('#copy').addEventListener('click', async function () {
   if (mq && mq.addEventListener) mq.addEventListener('change', function (e) {
     if (!saved) apply(e.matches ? 'dark' : 'light');
   });
+  onLang.push(label);
 })();
 
 /* ---------- Musik latar ---------- */
@@ -772,9 +926,10 @@ const music = (function () {
   }
   function ui() {
     btn.setAttribute('aria-pressed', on ? 'true' : 'false');
-    const label = on ? 'Jeda musik latar' : 'Putar musik latar';
+    const label = T(on ? 'musicPause' : 'musicPlay');
     btn.setAttribute('aria-label', label);
     btn.title = label;
+    $('#music-title').textContent = lang === 'en' ? cfg.titleEn : cfg.title;
   }
   function start() {
     if (cfg.src) {
@@ -816,7 +971,7 @@ const music = (function () {
     if (document.hidden && on) { held = true; stop(); }
     else if (!document.hidden && held) { held = false; start(); }
   });
-  $('#music-title').textContent = cfg.title;
+  onLang.push(ui);
   return { start: start, isOn: function () { return on; } };
 })();
 
@@ -824,6 +979,31 @@ $('#open').addEventListener('click', function () {
   if (!music.isOn()) music.start();
   $('#pembuka').scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
 });
+
+/* ---------- Pemilih bahasa ---------- */
+const langBtns = $$('.lang button');
+function refresh() {
+  document.documentElement.lang = lang;
+  const page = $('.page');
+  if (page) page.lang = lang;
+  document.title = T('title');
+  applyStatic();
+  renderDates();
+  $('#guest').textContent = guestName();
+  tick();
+  updateLinks();
+  langBtns.forEach(function (b) { b.setAttribute('aria-pressed', b.dataset.lang === lang ? 'true' : 'false'); });
+  onLang.forEach(function (f) { f(); });
+}
+langBtns.forEach(function (b) {
+  b.addEventListener('click', function () {
+    if (b.dataset.lang === lang) return;
+    lang = b.dataset.lang;
+    try { localStorage.setItem('undangan-bahasa', lang); } catch (e) {}
+    refresh();
+  });
+});
+refresh();
 })();
 </script>
 
